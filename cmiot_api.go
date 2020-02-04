@@ -39,6 +39,9 @@ func (c *CMIOTClient) GetSimDataMargin(Msisdn string) (*Gprs, error) {
 		if len(data.Result) < 1 {
 			return nil, errors.New("data Result len is zero")
 		}
+		if len(data.Result[0].Gprs) < 1 {
+			return nil, errors.New("data Gprs len is zero")
+		}
 		return data.Result[0].Gprs[0], nil
 	} else {
 		return nil, errors.New(data.Message)
