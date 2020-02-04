@@ -4,6 +4,7 @@ import "encoding/json"
 
 type CMIOTClient struct {
 	client      *CMIOTHttp
+	debug       bool
 	forwarderIp string
 
 	apiId       string
@@ -23,6 +24,10 @@ func (c *CMIOTClient) setProxy(proxyUrl string) {
 
 func (c *CMIOTClient) unsetProxy() {
 	c.client.unsetProxy()
+}
+
+func (c *CMIOTClient) SetDebug(debug bool) {
+	c.client.isDebug = debug
 }
 
 func (c *CMIOTClient) call(ebid string, query interface{}, body interface{}) error {

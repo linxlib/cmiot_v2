@@ -18,6 +18,7 @@ const (
 
 type CMIOTHttp struct {
 	isKeepAlive bool
+	isDebug     bool
 
 	conn *http.Client
 }
@@ -103,15 +104,20 @@ func (this *CMIOTHttp) request(method, urlStr, reqStr string, userTimeout int, f
 	if forwarderIp != "" {
 		req.Header.Add("X-Forwarded-For", forwarderIp)
 	}
-	bs, _ := httputil.DumpRequest(req, false)
-	fmt.Println(string(bs))
+	if this.isDebug {
+		bs, _ := httputil.DumpRequest(req, false)
+		fmt.Println(string(bs))
+	}
 
 	resp, err := this.conn.Do(req)
 	if err != nil {
 		return "", fmt.Errorf("http error  %v", err)
 	}
-	bs, _ = httputil.DumpResponse(resp, true)
-	fmt.Println(string(bs))
+	if this.isDebug {
+		bs, _ := httputil.DumpResponse(resp, true)
+		fmt.Println(string(bs))
+	}
+
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("http error code %d", resp.StatusCode)
