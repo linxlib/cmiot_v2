@@ -33,7 +33,7 @@ func (c *CMIOTClient) call(ebid string, query interface{}, body interface{}) err
 	}
 	url += "?" + qry
 
-	result, err := c.client.request("GET", url, "", 10, c.forwarderIp)
+	result, err := c.client.request("GET", url, "", 30000, c.forwarderIp)
 	if err != nil {
 		return err
 	}
