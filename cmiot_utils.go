@@ -31,26 +31,26 @@ func getApiNameByEBID(ebid string) string {
 		return "gprsrealsingle"
 	case EBID_userstatusrealsingle:
 		return "userstatusrealsingle"
-	case EBID_cardinfo:
-		return "cardinfo"
+	//case EBID_cardinfo:
+	//	return "cardinfo"
 	case EBID_gprsusedinfosingle:
 		return "gprsusedinfosingle"
 	case EBID_onandoffrealsingle:
 		return "onandoffrealsingle"
-	case EBID_batchsmsusedbydate:
-		return "batchsmsusedbydate"
+	//case EBID_batchsmsusedbydate:
+	//	return "batchsmsusedbydate"
 	case EBID_batchgprsusedbydate:
 		return "batchgprsusedbydate"
 	case EBID_balancerealsingle:
 		return "balancerealsingle"
-	case EBID_smsusedinfosingle:
-		return "smsusedinfosingle"
-	case EBID_smsstatusreset:
-		return "smsstatusreset"
+	//case EBID_smsusedinfosingle:
+	//	return "smsusedinfosingle"
+	//case EBID_smsstatusreset:
+	//	return "smsstatusreset"
 	case EBID_groupuserinfo:
 		return "groupuserinfo"
-	case EBID_smsusedbydate:
-		return "smsusedbydate"
+	//case EBID_smsusedbydate:
+	//	return "smsusedbydate"
 	case EBID_gprsrealtimeinfo:
 		return "gprsrealtimeinfo"
 	case EBID_arrearageuserinfo:
@@ -65,32 +65,32 @@ func getApiNameByEBID(ebid string) string {
 		return "queryabnormalcardcount"
 	case EBID_querygprsonlinecardcount:
 		return "querygprsonlinecardcount"
-	case EBID_querysmsopenstatus:
-		return "querysmsopenstatus"
-	case EBID_querygprsopenstatus:
-		return "querygprsopenstatus"
-	case EBID_queryapnopenstatus:
-		return "queryapnopenstatus"
+	//case EBID_querysmsopenstatus:
+	//	return "querysmsopenstatus"
+	//case EBID_querygprsopenstatus:
+	//	return "querygprsopenstatus"
+	//case EBID_queryapnopenstatus:
+	//	return "queryapnopenstatus"
 	case EBID_querycardlifecycle:
 		return "querycardlifecycle"
-	case EBID_useropenservice:
-		return "useropenservice"
-	case EBID_querygroupuserchangenum:
-		return "querygroupuserchangenum"
+	//case EBID_useropenservice:
+	//	return "useropenservice"
+	//case EBID_querygroupuserchangenum:
+	//	return "querygroupuserchangenum"
 	case EBID_querycardopentime:
 		return "querycardopentime"
-	case EBID_batchquerycardinfo:
-		return "batchquerycardinfo"
+	//case EBID_batchquerycardinfo:
+	//	return "batchquerycardinfo"
 	case EBID_batchquerycardlifecycle:
 		return "batchquerycardlifecycle"
-	case EBID_batchquerymonthsmsinfo:
-		return "batchquerymonthsmsinfo"
+	//case EBID_batchquerymonthsmsinfo:
+	//	return "batchquerymonthsmsinfo"
 	case EBID_batchqueryrealtimegprsinfo:
 		return "batchqueryrealtimegprsinfo"
-	case EBID_querygprsshareused:
-		return "querygprsshareused"
-	case EBID_batchquerygprsshareused:
-		return "batchquerygprsshareused"
+	//case EBID_querygprsshareused:
+	//	return "querygprsshareused"
+	//case EBID_batchquerygprsshareused:
+	//	return "batchquerygprsshareused"
 
 	default:
 		return ""
