@@ -15,6 +15,12 @@ type BaseQuery struct {
 type BaseQueryWithDate struct {
 	*PublicQuery
 	Msisdn    string `query:"msisdn"`
+	QueryDate string `query:"query_date"`
+}
+
+type BaseQueryWithDate1 struct {
+	*PublicQuery
+	Msisdn    string `query:"msisdn"`
 	QueryDate string `query:"queryDate"`
 }
 

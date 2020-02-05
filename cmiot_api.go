@@ -165,7 +165,7 @@ func (c *CMIOTClient) GetBalanceRealSingle(msidsn string) (*BalanceRealSingle, e
 
 //EBID_groupuserinfo
 func (c *CMIOTClient) GetGroupUserInfo() (*GroupUserInfo, error) {
-	qry := BaseQueryNoCardId{
+	qry := BaseQueryWithDate{
 		PublicQuery: newPublicQuery(EBID_groupuserinfo, c.apiId, c.apiPassword),
 	}
 	var data GroupUserInfoResp
@@ -183,7 +183,7 @@ func (c *CMIOTClient) GetGroupUserInfo() (*GroupUserInfo, error) {
 
 //EBID_gprsusedinfosinglebydate
 func (c *CMIOTClient) GetGprsUsedInfoSingleByDate(msidsn string, queryDate string) (*GprsUsedInfoSingleByDate, error) {
-	qry := BaseQueryWithDate{
+	qry := BaseQueryWithDate1{
 		PublicQuery: newPublicQuery(EBID_gprsusedinfosinglebydate, c.apiId, c.apiPassword),
 		Msisdn:      msidsn,
 		QueryDate:   queryDate,

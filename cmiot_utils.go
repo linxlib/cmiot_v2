@@ -102,7 +102,7 @@ func buildUrl(ebid string) string {
 	return APIBASE + apiName
 }
 
-func getCardStatusPB(cardStatus string) string {
+func GetCardStatusPB(cardStatus string) string {
 	switch cardStatus {
 	case "00":
 		return "正常"
