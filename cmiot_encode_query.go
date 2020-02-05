@@ -14,23 +14,23 @@ type QueryEncode struct {
 	r      *http.Request
 }
 
-// NewQueryEncode create a new URL query  encoder
-func NewQueryEncode(req *http.Request) *QueryEncode {
+// newQueryEncode create a new URL query  encoder
+func newQueryEncode(req *http.Request) *QueryEncode {
 	return &QueryEncode{values: make(url.Values)}
 }
 
-// Add Encoder core function, used to set each key / value into the http URL query
-func (q *QueryEncode) Add(key string, v reflect.Value, sf reflect.StructField) error {
+// add Encoder core function, used to set each key / value into the http URL query
+func (q *QueryEncode) add(key string, v reflect.Value, sf reflect.StructField) error {
 	q.values.Add(key, valToStr(v, sf))
 	return nil
 }
 
-// End URL query structured data into strings
-func (q *QueryEncode) End() string {
+// end URL query structured data into strings
+func (q *QueryEncode) end() string {
 	return q.values.Encode()
 }
 
-// Name URL query Encoder name
-func (q *QueryEncode) Name() string {
+// name URL query Encoder name
+func (q *QueryEncode) name() string {
 	return "query"
 }

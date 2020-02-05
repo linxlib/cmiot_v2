@@ -5,8 +5,27 @@ import (
 	"strconv"
 )
 
+//EBID_gprsrealsingle 在线信息实时查询
+func (c *CMIOTClient) GetGprsRealSingle(msisdn string) (*GprsRealSingle, error) {
+	qry := BaseQuery{
+		PublicQuery: newPublicQuery(EBID_gprsrealsingle, c.apiId, c.apiPassword),
+		Msisdn:      msisdn,
+	}
+	var data GprsRealSingleResp
+	err := c.call(EBID_gprsrealsingle, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}
+
+// EBID_userstatusrealsingle
 func (c *CMIOTClient) GetSimStatus(Msisdn string) (string, error) {
-	qry := UserStatusRealSingleQuery{
+	qry := BaseQuery{
 		PublicQuery: newPublicQuery(EBID_userstatusrealsingle, c.apiId, c.apiPassword),
 		Msisdn:      Msisdn,
 	}
@@ -24,8 +43,28 @@ func (c *CMIOTClient) GetSimStatus(Msisdn string) (string, error) {
 
 }
 
+//EBID_gprsusedinfosingle
+func (c *CMIOTClient) GetGprsUsedInfSingle(Msisdn string) (*GprsUsedInfoSingle, error) {
+	qry := BaseQuery{
+		PublicQuery: newPublicQuery(EBID_gprsusedinfosingle, c.apiId, c.apiPassword),
+		Msisdn:      Msisdn,
+	}
+	var data GprsUsedInfoSingleResp
+	err := c.call(EBID_gprsusedinfosingle, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}
+
+//EBID_gprsrealtimeinfo
 func (c *CMIOTClient) GetSimDataMargin(Msisdn string) (*Gprs, error) {
-	qry := GprsRealTimeInfoQuery{
+	qry := BaseQuery{
 		PublicQuery: newPublicQuery(EBID_gprsrealtimeinfo, c.apiId, c.apiPassword),
 		Msisdn:      Msisdn,
 	}
@@ -49,6 +88,7 @@ func (c *CMIOTClient) GetSimDataMargin(Msisdn string) (*Gprs, error) {
 
 }
 
+//EBID_onandoffrealsingle
 func (c *CMIOTClient) GetOnOff(Msisdn string) (bool, error) {
 	qry := BaseQuery{
 		PublicQuery: newPublicQuery(EBID_onandoffrealsingle, c.apiId, c.apiPassword),
@@ -67,6 +107,7 @@ func (c *CMIOTClient) GetOnOff(Msisdn string) (bool, error) {
 	}
 }
 
+//EBID_querycardlifecycle
 func (c *CMIOTClient) QueryCardLifeCycle(Msisdn string) (bool, error) {
 	qry := BaseQuery{
 		PublicQuery: newPublicQuery(EBID_querycardlifecycle, c.apiId, c.apiPassword),
@@ -85,6 +126,7 @@ func (c *CMIOTClient) QueryCardLifeCycle(Msisdn string) (bool, error) {
 	}
 }
 
+//EBID_queryabnormalcardcount
 func (c *CMIOTClient) GetUnnormalCount() (int64, error) {
 	qry := BaseQuery{
 		PublicQuery: newPublicQuery(EBID_queryabnormalcardcount, c.apiId, c.apiPassword),
@@ -99,5 +141,80 @@ func (c *CMIOTClient) GetUnnormalCount() (int64, error) {
 		return i, nil
 	} else {
 		return -1, errors.New(data.Message)
+	}
+}
+
+//EBID_balancerealsingle
+func (c *CMIOTClient) GetBalanceRealSingle(msidsn string) (*BalanceRealSingle, error) {
+	qry := BaseQuery{
+		PublicQuery: newPublicQuery(EBID_balancerealsingle, c.apiId, c.apiPassword),
+		Msisdn:      msidsn,
+	}
+	var data BalanceRealSingleResp
+	err := c.call(EBID_balancerealsingle, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}
+
+//EBID_groupuserinfo
+func (c *CMIOTClient) GetGroupUserInfo() (*GroupUserInfo, error) {
+	qry := BaseQueryNoCardId{
+		PublicQuery: newPublicQuery(EBID_groupuserinfo, c.apiId, c.apiPassword),
+	}
+	var data GroupUserInfoResp
+	err := c.call(EBID_groupuserinfo, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}
+
+//EBID_gprsusedinfosinglebydate
+func (c *CMIOTClient) GetGprsUsedInfoSingleByDate(msidsn string, queryDate string) (*GprsUsedInfoSingleByDate, error) {
+	qry := BaseQueryWithDate{
+		PublicQuery: newPublicQuery(EBID_gprsusedinfosinglebydate, c.apiId, c.apiPassword),
+		Msisdn:      msidsn,
+		QueryDate:   queryDate,
+	}
+	var data GprsUsedInfoSingleByDateResp
+	err := c.call(EBID_gprsusedinfosinglebydate, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}
+
+//EBID_querycardcount
+func (c *CMIOTClient) QueryCardCount() (*QueryCardCount, error) {
+	qry := BaseQueryNoCardId{
+		PublicQuery: newPublicQuery(EBID_querycardcount, c.apiId, c.apiPassword),
+	}
+	var data QueryCardCountResp
+	err := c.call(EBID_querycardcount, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
 	}
 }

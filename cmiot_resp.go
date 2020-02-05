@@ -67,5 +67,66 @@ type CardUnusualNum struct {
 	*BaseResponse
 	Result []struct {
 		CardUnusualNum string `json:"cardUnusualNum"`
-	}
+	} `json:"result"`
+}
+
+type GprsRealSingle struct {
+	APN        string `json:"APN"`
+	GPRSSTATUS string `json:"GPRSSTATUS"`
+	IP         string `json:"IP"`
+	RAT        string `json:"RAT"`
+}
+type GprsRealSingleResp struct {
+	*BaseResponse
+	Result []*GprsRealSingle `json:"result"`
+}
+
+type GprsUsedInfoSingle struct {
+	TotalGps string `json:"total_gprs"`
+}
+
+type GprsUsedInfoSingleResp struct {
+	*BaseResponse
+	Result []*GprsUsedInfoSingle `json:"result"`
+}
+
+type BalanceRealSingle struct {
+	Balance string `json:"balance"`
+}
+
+type BalanceRealSingleResp struct {
+	*BaseResponse
+	Result []*BalanceRealSingle `json:"result"`
+}
+
+type GroupUserInfo struct {
+	Total string `json:"total"`
+}
+
+type GroupUserInfoResp struct {
+	*BaseResponse
+	Result []*GroupUserInfo `json:"result"`
+}
+
+type GprsUsedInfoSingleByDate struct {
+	Gprs string `json:"gprs"`
+}
+type GprsUsedInfoSingleByDateResp struct {
+	*BaseResponse
+	Result []*GprsUsedInfoSingleByDate `json:"result"`
+}
+
+/*
+"normalnum": "28596", "othernum": "3", "sleepnum": "2001", "testnum": "564"
+*/
+type QueryCardCount struct {
+	NormalNum string `json:"normalnum"`
+	OtherNum  string `json:"othernum"`
+	SleepNum  string `json:"sleepnum"`
+	TestNum   string `json:"testnum"`
+}
+
+type QueryCardCountResp struct {
+	*BaseResponse
+	Result []*QueryCardCount `json:"result"`
 }

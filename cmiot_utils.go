@@ -39,8 +39,8 @@ func getApiNameByEBID(ebid string) string {
 		return "onandoffrealsingle"
 	//case EBID_batchsmsusedbydate:
 	//	return "batchsmsusedbydate"
-	case EBID_batchgprsusedbydate:
-		return "batchgprsusedbydate"
+	//case EBID_batchgprsusedbydate:
+	//	return "batchgprsusedbydate"
 	case EBID_balancerealsingle:
 		return "balancerealsingle"
 	//case EBID_smsusedinfosingle:
@@ -55,16 +55,16 @@ func getApiNameByEBID(ebid string) string {
 		return "gprsrealtimeinfo"
 	case EBID_arrearageuserinfo:
 		return "arrearageuserinfo"
-	case EBID_querycardprodinfo:
-		return "querycardprodinfo"
+	//case EBID_querycardprodinfo:
+	//	return "querycardprodinfo"
 	case EBID_gprsusedinfosinglebydate:
 		return "gprsusedinfosinglebydate"
 	case EBID_querycardcount:
 		return "querycardcount"
 	case EBID_queryabnormalcardcount:
 		return "queryabnormalcardcount"
-	case EBID_querygprsonlinecardcount:
-		return "querygprsonlinecardcount"
+	//case EBID_querygprsonlinecardcount:
+	//	return "querygprsonlinecardcount"
 	//case EBID_querysmsopenstatus:
 	//	return "querysmsopenstatus"
 	//case EBID_querygprsopenstatus:
@@ -77,16 +77,16 @@ func getApiNameByEBID(ebid string) string {
 	//	return "useropenservice"
 	//case EBID_querygroupuserchangenum:
 	//	return "querygroupuserchangenum"
-	case EBID_querycardopentime:
-		return "querycardopentime"
+	//case EBID_querycardopentime:
+	//	return "querycardopentime"
 	//case EBID_batchquerycardinfo:
 	//	return "batchquerycardinfo"
-	case EBID_batchquerycardlifecycle:
-		return "batchquerycardlifecycle"
+	//case EBID_batchquerycardlifecycle:
+	//	return "batchquerycardlifecycle"
 	//case EBID_batchquerymonthsmsinfo:
 	//	return "batchquerymonthsmsinfo"
-	case EBID_batchqueryrealtimegprsinfo:
-		return "batchqueryrealtimegprsinfo"
+	//case EBID_batchqueryrealtimegprsinfo:
+	//	return "batchqueryrealtimegprsinfo"
 	//case EBID_querygprsshareused:
 	//	return "querygprsshareused"
 	//case EBID_batchquerygprsshareused:
@@ -129,10 +129,10 @@ func getCardStatusPB(cardStatus string) string {
 
 func encodeQuery(query interface{}) (string, error) {
 	var qry string
-	q := NewQueryEncode(nil)
-	if err := Encode(query, q); err != nil {
+	q := newQueryEncode(nil)
+	if err := qryEncode(query, q); err != nil {
 		return "", err
 	}
-	qry = q.End()
+	qry = q.end()
 	return qry, nil
 }

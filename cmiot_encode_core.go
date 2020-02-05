@@ -11,22 +11,22 @@ import (
 )
 
 // ErrUnsupported Unsupported type error returned
-var ErrUnsupported = errors.New("Encode:Unsupported type")
+var ErrUnsupported = errors.New("qryEncode:Unsupported type")
 
 var emptyField = reflect.StructField{}
 
 // Adder interface
 type Adder interface {
-	Add(key string, v reflect.Value, sf reflect.StructField) error
-	Name() string
+	add(key string, v reflect.Value, sf reflect.StructField) error
+	name() string
 }
 
-// Encode core entry function
+// qryEncode core entry function
 // in 的类型可以是
 // struct
 // map
 // []string
-func Encode(in interface{}, a Adder) error {
+func qryEncode(in interface{}, a Adder) error {
 	v := reflect.ValueOf(in)
 
 	for v.Kind() == reflect.Ptr {
@@ -41,7 +41,7 @@ func Encode(in interface{}, a Adder) error {
 	case reflect.Map:
 		iter := v.MapRange()
 		for iter.Next() {
-			if err := a.Add(valToStr(iter.Key(), emptyField), iter.Value(), emptyField); err != nil {
+			if err := a.add(valToStr(iter.Key(), emptyField), iter.Value(), emptyField); err != nil {
 				return err
 			}
 		}
@@ -60,7 +60,7 @@ func Encode(in interface{}, a Adder) error {
 
 		for i, l := 0, v.Len(); i < l; i += 2 {
 
-			if err := a.Add(valToStr(v.Index(i), emptyField), v.Index(i+1), emptyField); err != nil {
+			if err := a.add(valToStr(v.Index(i), emptyField), v.Index(i+1), emptyField); err != nil {
 				return err
 			}
 		}
@@ -120,7 +120,7 @@ func valToStr(v reflect.Value, sf reflect.StructField) string {
 
 func parseTagAndSet(val reflect.Value, sf reflect.StructField, a Adder) error {
 
-	tagName := sf.Tag.Get(a.Name())
+	tagName := sf.Tag.Get(a.name())
 	tagName, opts := parseTag(tagName)
 
 	if tagName == "" {
@@ -135,7 +135,7 @@ func parseTagAndSet(val reflect.Value, sf reflect.StructField, a Adder) error {
 		return nil
 	}
 
-	return a.Add(tagName, val, sf)
+	return a.add(tagName, val, sf)
 }
 
 func encode(val reflect.Value, sf reflect.StructField, a Adder) error {
@@ -172,7 +172,7 @@ func encode(val reflect.Value, sf reflect.StructField, a Adder) error {
 				continue
 			}
 
-			tag := sf.Tag.Get(a.Name())
+			tag := sf.Tag.Get(a.name())
 
 			if tag == "-" {
 				continue

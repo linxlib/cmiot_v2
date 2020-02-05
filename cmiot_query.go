@@ -12,6 +12,16 @@ type BaseQuery struct {
 	Msisdn string `query:"msisdn"`
 }
 
+type BaseQueryWithDate struct {
+	*PublicQuery
+	Msisdn    string `query:"msisdn"`
+	QueryDate string `query:"queryDate"`
+}
+
+type BaseQueryNoCardId struct {
+	*PublicQuery
+}
+
 func newPublicQuery(ebid string, appId string, appPassword string) *PublicQuery {
 	token, transId := getTokenAndTransId(appId, appPassword)
 	return &PublicQuery{
@@ -20,22 +30,4 @@ func newPublicQuery(ebid string, appId string, appPassword string) *PublicQuery 
 		EBID:    ebid,
 		Token:   token,
 	}
-}
-
-// 单卡实时信息Query
-type UserStatusRealSingleQuery struct {
-	*PublicQuery
-	Msisdn string `query:"msisdn"`
-}
-
-// 单卡流量实时信息
-type GprsRealTimeInfoQuery struct {
-	*PublicQuery
-	Msisdn string `query:"msisdn"`
-}
-
-// 批量流量实时信息
-type GprsBatchRealTimeInfoQuery struct {
-	*PublicQuery
-	Msisdns string `query:"msisdns"`
 }
