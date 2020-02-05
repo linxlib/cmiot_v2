@@ -164,9 +164,10 @@ func (c *CMIOTClient) GetBalanceRealSingle(msidsn string) (*BalanceRealSingle, e
 }
 
 //EBID_groupuserinfo
-func (c *CMIOTClient) GetGroupUserInfo() (*GroupUserInfo, error) {
+func (c *CMIOTClient) GetGroupUserInfo(queryDate string) (*GroupUserInfo, error) {
 	qry := BaseQueryWithDate{
 		PublicQuery: newPublicQuery(EBID_groupuserinfo, c.apiId, c.apiPassword),
+		QueryDate:   queryDate,
 	}
 	var data GroupUserInfoResp
 	err := c.call(EBID_groupuserinfo, qry, &data)

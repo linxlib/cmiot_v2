@@ -120,10 +120,10 @@ type GprsUsedInfoSingleByDateResp struct {
 "normalnum": "28596", "othernum": "3", "sleepnum": "2001", "testnum": "564"
 */
 type QueryCardCount struct {
-	NormalNum string `json:"normalnum"`
-	OtherNum  string `json:"othernum"`
-	SleepNum  string `json:"sleepnum"`
-	TestNum   string `json:"testnum"`
+	NormalNum int `json:"normalnum"`
+	OtherNum  int `json:"othernum"`
+	SleepNum  int `json:"sleepnum"`
+	TestNum   int `json:"testnum"`
 }
 
 type QueryCardCountResp struct {
