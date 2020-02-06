@@ -25,6 +25,5 @@ func randInt(min, max int) int {
 }
 
 func getTransid(appId string) string {
-	autoid := randInt(1, 99999998)
-	return fmt.Sprintf("%s%s%.8d", appId, time.Now().Format("20060102150405"), autoid)
+	return fmt.Sprintf("%s%s%.8d", appId, time.Now().Format("20060102150405"), randInt(1, 99999998))
 }
