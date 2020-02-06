@@ -2,6 +2,7 @@ package cmiot_v2
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -16,7 +17,14 @@ func getTokenAndTransId(appId string, appPassword string) (token string, transId
 	return token, transId
 }
 
+func randInt(min, max int) int {
+	if min >= max || min == 0 || max == 0 {
+		return max
+	}
+	return rand.Intn(max-min) + min
+}
+
 func getTransid(appId string) string {
-	autoid := 1
-	return fmt.Sprintf("%s%s%.8d", appId, time.Now().Format("20060102")+"120344", autoid)
+	autoid := randInt(1, 99999998)
+	return fmt.Sprintf("%s%s%.8d", appId, time.Now().Format("20060102150405"), autoid)
 }
