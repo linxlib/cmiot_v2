@@ -31,8 +31,8 @@ func getApiNameByEBID(ebid string) string {
 		return "gprsrealsingle"
 	case EBID_userstatusrealsingle:
 		return "userstatusrealsingle"
-	//case EBID_cardinfo:
-	//	return "cardinfo"
+	case EBID_cardinfo:
+		return "cardinfo"
 	case EBID_gprsusedinfosingle:
 		return "gprsusedinfosingle"
 	case EBID_onandoffrealsingle:

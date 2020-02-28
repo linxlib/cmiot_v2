@@ -219,3 +219,23 @@ func (c *CMIOTClient) QueryCardCount() (*QueryCardCount, error) {
 		return nil, errors.New(data.Message)
 	}
 }
+
+//EBID_cardinfo
+func (c *CMIOTClient) QueryCardInfo(card_info string, card_type int) (*CardInfo, error) {
+	qry := BaseQueryWithCardInfo{
+		PublicQuery: newPublicQuery(EBID_cardinfo, c.apiId, c.apiPassword),
+		CardInfo:    card_info,
+		CardType:    card_type,
+	}
+	var data QueryCardInfoResp
+	err := c.call(EBID_cardinfo, qry, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	if data.Status == "0" {
+		return data.Result[0], nil
+	} else {
+		return nil, errors.New(data.Message)
+	}
+}

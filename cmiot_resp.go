@@ -130,3 +130,13 @@ type QueryCardCountResp struct {
 	*BaseResponse
 	Result []*QueryCardCount `json:"result"`
 }
+type QueryCardInfoResp struct {
+	*BaseResponse
+	Result []*CardInfo `json:"result"`
+}
+
+type CardInfo struct {
+	IMSI   string
+	MSISDN string
+	ICCID  string
+}

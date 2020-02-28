@@ -7,9 +7,9 @@ const (
 const (
 	EBID_gprsrealsingle       = "0001000000008" //在线信息实时查询
 	EBID_userstatusrealsingle = "0001000000009" //用户状态信息实时查询
-	//EBID_cardinfo                   = "0001000000010" //码号信息查询
-	EBID_gprsusedinfosingle = "0001000000012" //用户当月GPRS查询
-	EBID_onandoffrealsingle = "0001000000025" //开关机状态实时查询
+	EBID_cardinfo             = "0001000000010" //码号信息查询
+	EBID_gprsusedinfosingle   = "0001000000012" //用户当月GPRS查询
+	EBID_onandoffrealsingle   = "0001000000025" //开关机状态实时查询
 	//EBID_batchsmsusedbydate         = "0001000000026" //短信使用信息批量查询
 	//EBID_batchgprsusedbydate = "0001000000027" //流量使用信息批量查询
 	EBID_balancerealsingle = "0001000000035" //用户余额信息实时查询

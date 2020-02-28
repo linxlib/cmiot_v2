@@ -24,6 +24,12 @@ type BaseQueryWithDate1 struct {
 	QueryDate string `query:"queryDate"`
 }
 
+type BaseQueryWithCardInfo struct {
+	*PublicQuery
+	CardInfo string `query:"card_info"`
+	CardType int    `query:"type"`
+}
+
 type BaseQueryNoCardId struct {
 	*PublicQuery
 }
